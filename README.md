@@ -2,7 +2,7 @@
 
 Professional software engineering skills for AI coding agents. Transforms code into senior-engineer quality software through SOLID principles, TDD, clean code practices, and professional software design.
 
-Skills follow the [Agent Skills](https://github.com/anthropics/agent-skills) format.
+Skills follow the [Agent Skills](https://github.com/anthropics/skills) format.
 
 ## Available Skills
 
