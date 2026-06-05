@@ -26,14 +26,15 @@ Use this skill to produce Java and Spring Boot work that a strict enterprise mai
 
 ## Required Agent Behavior
 
-1. Inspect the repository first: packages, modules, Gradle/Maven files, Spring configuration, test layout, database migrations, security configuration, and existing naming.
-2. Identify the intended architecture before judging code: layered, clean, hexagonal, modular monolith, legacy MVC, or mixed.
-3. Trace dependencies from controllers inward and infrastructure outward. Flag domain classes that import Spring, JPA, web, cloud, messaging, SDK, or persistence classes.
-4. Separate HTTP concerns, application workflow, domain rules, persistence mapping, and external system adapters.
-5. Treat tests as design evidence. Check whether tests cover domain rules, workflow branching, transaction behavior, repository queries, validation, authorization, and serialization.
-6. Prefer small patches that preserve behavior. For risky refactors, ask for characterization tests before moving logic.
-7. Do not invent framework conventions. Follow the repository's Spring Boot, package, mapper, exception, transaction, and test patterns unless they are the finding.
-8. When uncertain, mark the item as an assumption and explain what file or runtime evidence would confirm it.
+1. Start with [Java Agent Review Workflow](references/java-agent-review-workflow.md). Select the task route, evidence requirements, severity rules, and output format before reading deeper references.
+2. Inspect the repository first: packages, modules, Gradle/Maven files, Spring configuration, test layout, database migrations, security configuration, and existing naming.
+3. Identify the intended architecture before judging code: layered, clean, hexagonal, modular monolith, legacy MVC, or mixed.
+4. Trace dependencies from controllers inward and infrastructure outward. Flag domain classes that import Spring, JPA, web, cloud, messaging, SDK, or persistence classes.
+5. Separate HTTP concerns, application workflow, domain rules, persistence mapping, and external system adapters.
+6. Treat tests as design evidence. Check whether tests cover domain rules, workflow branching, transaction behavior, repository queries, validation, authorization, and serialization.
+7. Prefer small patches that preserve behavior. For risky refactors, ask for characterization tests before moving logic.
+8. Do not invent framework conventions. Follow the repository's Spring Boot, package, mapper, exception, transaction, and test patterns unless they are the finding.
+9. When uncertain, mark the item as an assumption and explain what file or runtime evidence would confirm it.
 
 ## Java Engineering Checklist
 
@@ -159,6 +160,7 @@ It names the Spring transaction risk, the misplaced responsibilities, the Java/S
 
 ## References
 
+- [Java Agent Review Workflow](references/java-agent-review-workflow.md)
 - [Java SOLID](references/java-solid.md)
 - [Java Clean Code](references/java-clean-code.md)
 - [Java Design Patterns](references/java-design-patterns.md)

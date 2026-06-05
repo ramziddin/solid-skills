@@ -75,6 +75,7 @@ Java/Spring guidance for SOLID, Java readability, design patterns, refactoring, 
 
 **Reference documentation included:**
 
+- `java-agent-review-workflow.md` - Task routing, evidence rules, severity logic, and pre-output self-review gates for Java/Spring agents
 - `java-solid.md` - Java class and Spring boundary review using SOLID
 - `java-clean-code.md` - Java naming, nulls, exceptions, immutability, collections, logging, and configuration
 - `java-design-patterns.md` - Strategy, Factory Method, Adapter, Decorator, Builder, Template Method, Observer/Event, and Repository patterns
@@ -132,6 +133,7 @@ skills/
 └── java-enterprise-engineering/
     ├── SKILL.md
     └── references/
+        ├── java-agent-review-workflow.md
         ├── java-solid.md
         ├── java-clean-code.md
         ├── java-design-patterns.md
