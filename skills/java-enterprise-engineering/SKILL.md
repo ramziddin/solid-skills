@@ -33,8 +33,9 @@ Use this skill to produce Java and Spring Boot work that a strict enterprise mai
 5. Separate HTTP concerns, application workflow, domain rules, persistence mapping, and external system adapters.
 6. Treat tests as design evidence. Check whether tests cover domain rules, workflow branching, transaction behavior, repository queries, validation, authorization, and serialization.
 7. Prefer small patches that preserve behavior. For risky refactors, ask for characterization tests before moving logic.
-8. Do not invent framework conventions. Follow the repository's Spring Boot, package, mapper, exception, transaction, and test patterns unless they are the finding.
-9. When uncertain, mark the item as an assumption and explain what file or runtime evidence would confirm it.
+8. Use [Java Review Examples](references/java-review-examples.md) when a draft finding sounds vague, reusable for non-Java code, or missing evidence.
+9. Do not invent framework conventions. Follow the repository's Spring Boot, package, mapper, exception, transaction, and test patterns unless they are the finding.
+10. When uncertain, mark the item as an assumption and explain what file or runtime evidence would confirm it.
 
 ## Java Engineering Checklist
 
@@ -161,6 +162,7 @@ It names the Spring transaction risk, the misplaced responsibilities, the Java/S
 ## References
 
 - [Java Agent Review Workflow](references/java-agent-review-workflow.md)
+- [Java Review Examples](references/java-review-examples.md)
 - [Java SOLID](references/java-solid.md)
 - [Java Clean Code](references/java-clean-code.md)
 - [Java Design Patterns](references/java-design-patterns.md)

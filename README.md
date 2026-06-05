@@ -76,6 +76,7 @@ Java/Spring guidance for SOLID, Java readability, design patterns, refactoring, 
 **Reference documentation included:**
 
 - `java-agent-review-workflow.md` - Task routing, evidence rules, severity logic, and pre-output self-review gates for Java/Spring agents
+- `java-review-examples.md` - Weak vs acceptable Java/Spring review comments with evidence, risk, correction, and verification
 - `java-solid.md` - Java class and Spring boundary review using SOLID
 - `java-clean-code.md` - Java naming, nulls, exceptions, immutability, collections, logging, and configuration
 - `java-design-patterns.md` - Strategy, Factory Method, Adapter, Decorator, Builder, Template Method, Observer/Event, and Repository patterns
@@ -95,6 +96,7 @@ Java/Spring guidance for SOLID, Java readability, design patterns, refactoring, 
 - Checks package boundaries, dependency direction, layer ownership, domain logic placement, transaction scope, DTO/entity separation, and JPA leakage
 - Separates required changes from optional cleanup during enterprise Java code review
 - Gives agents concrete stop conditions before broad refactors, security changes, transaction changes, migrations, and public API changes
+- Includes `scripts/quality-gate.sh` to validate Java skill links, required sections, local artifacts, vague phrases, and whitespace
 
 ## Installation
 
@@ -134,6 +136,7 @@ skills/
     ├── SKILL.md
     └── references/
         ├── java-agent-review-workflow.md
+        ├── java-review-examples.md
         ├── java-solid.md
         ├── java-clean-code.md
         ├── java-design-patterns.md
