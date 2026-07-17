@@ -112,6 +112,162 @@ Dependencies flow: outer → inner. Never: inner → outer.
 
 ---
 
+## Design Patterns
+
+Design patterns are **reusable solutions to common software design problems** — a shared vocabulary for discussing and structuring code. They are grouped into three categories based on their purpose.
+
+> ⚠️ Let patterns emerge from refactoring. Don't force them upfront. A pattern should solve a problem you *have*, not one you *might* have.
+
+---
+
+### Creational Patterns
+
+These patterns deal with **how objects are created**, decoupling creation logic from the code that uses the objects.
+
+| Pattern | Purpose | When to Use |
+|---------|---------|-------------|
+| **Singleton** | Ensure only one instance exists | Global config, connection pools, logging. *Often overused — prefer dependency injection.* |
+| **Factory** | Create objects without specifying the exact class | Creation logic is complex or varies by type |
+| **Builder** | Construct complex objects step by step | Objects with many optional parameters; test data creation |
+| **Prototype** | Create new objects by cloning existing ones | Object creation is expensive, or you need variations of an existing object |
+
+---
+
+### Structural Patterns
+
+These patterns deal with **how objects and classes are composed** to form larger structures, while keeping them flexible and efficient.
+
+| Pattern | Purpose | When to Use |
+|---------|---------|-------------|
+| **Adapter** | Make incompatible interfaces work together | Integrating third-party libraries or legacy code |
+| **Decorator** | Add behavior to objects dynamically | Adding features without modifying existing code |
+| **Proxy** | Control access to an object | Lazy loading, access control, caching, logging |
+| **Composite** | Treat individual objects and compositions uniformly | Tree structures and hierarchies (e.g. files/folders, UI components) |
+
+---
+
+### Behavioral Patterns
+
+These patterns deal with **how objects communicate and share responsibilities**.
+
+| Pattern | Purpose | When to Use |
+|---------|---------|-------------|
+| **Strategy** | Define a family of interchangeable algorithms | Multiple ways to do something, switchable at runtime (e.g. pricing, sorting) |
+| **Observer** | Notify multiple objects about state changes | Event systems, pub/sub, reactive updates |
+| **Template Method** | Define an algorithm skeleton; let subclasses fill in steps | A common workflow with varying details (e.g. exporters, parsers) |
+| **Command** | Encapsulate a request as an object | Undo/redo, action queuing, logging operations |
+
+---
+
+### Anti-Patterns to Avoid
+
+| Anti-Pattern | Problem | Solution |
+|--------------|---------|----------|
+| **God Object** | One class does everything | Split by responsibility (SRP) |
+| **Spaghetti Code** | Tangled logic, no structure | Refactor into layers or modules |
+| **Golden Hammer** | Applying one pattern to every problem | Match the pattern to the actual problem |
+| **Premature Optimization** | Optimizing before it's needed | YAGNI — profile first |
+| **Copy-Paste Programming** | Duplication everywhere | Extract shared logic; follow the Rule of Three |
+
+---
+
+## Architecture
+
+Good architecture enables the team to **add, change, remove, test, and deploy features** with minimal friction. It's not about perfection upfront — it's about keeping options open and the codebase easy to reason about.
+
+---
+
+### Key Architectural Principles
+
+#### 1. Organize by Feature (Vertical Slices)
+
+Group code by **feature or domain**, not by technical role. Changes to a feature stay localized within that feature's folder.
+
+```
+❌ Layer-first (hard to navigate as the system grows)
+src/
+  controllers/   UserController, OrderController
+  services/      UserService, OrderService
+  repositories/  UserRepository, OrderRepository
+
+✅ Feature-first (cohesive, easy to find things)
+src/
+  users/         UserController, UserService, UserRepository
+  orders/        OrderController, OrderService, OrderRepository
+```
+
+#### 2. Separate Concerns into Layers (Horizontal Boundaries)
+
+Within each feature, separate code by its role:
+
+```
+┌────────────────────────┐
+│      Presentation      │  Controllers, HTTP handlers, CLI
+├────────────────────────┤
+│      Application       │  Use cases, orchestration
+├────────────────────────┤
+│        Domain          │  Business rules, entities, value objects
+├────────────────────────┤
+│     Infrastructure     │  Database, APIs, email, file system
+└────────────────────────┘
+```
+
+#### 3. The Dependency Rule
+
+**Dependencies always point inward.** The domain layer knows nothing about the database or HTTP. Infrastructure depends on domain interfaces — never the other way around.
+
+```
+Infrastructure → Application → Domain
+     (outer)        (middle)    (inner)
+```
+
+This is enforced by defining interfaces in the domain and implementing them in infrastructure.
+
+#### 4. Contracts Between Components
+
+Interfaces define the boundary between layers. This enables swapping implementations (e.g. `StripeGateway` → `PayPalGateway`) and makes testing trivial (inject a `MockGateway`).
+
+#### 5. Cross-Cutting Concerns
+
+Things like logging, authentication, and error handling span multiple features. Handle them via **middleware, interceptors, or decorators** rather than scattering the logic throughout your feature code.
+
+#### 6. Conway's Law
+
+> "Organizations design systems that mirror their communication structure."
+
+Team boundaries tend to become module boundaries. Design your team structure and architecture together, intentionally.
+
+---
+
+### Common Architectural Styles
+
+#### Layered Architecture
+The classic approach: Presentation → Business Logic → Persistence. Simple and well-understood, but requires discipline to avoid it becoming a "big ball of mud".
+
+#### Hexagonal Architecture (Ports & Adapters)
+The domain sits at the center. **Ports** are interfaces defined by the domain. **Adapters** are external implementations (HTTP, database, email) that plug into those ports. The domain has zero knowledge of adapters.
+
+#### Clean Architecture
+Similar to Hexagonal, with four explicit rings:
+1. **Entities** — Core enterprise business rules
+2. **Use Cases** — Application-specific business rules
+3. **Interface Adapters** — Controllers, presenters, gateways
+4. **Frameworks & Drivers** — Web frameworks, databases, external tools
+
+---
+
+### Red Flags in Architecture
+
+- Circular dependencies between modules
+- Domain code importing from infrastructure
+- Framework-specific code inside business logic
+- No clear boundaries between features
+- Shared mutable state across modules
+- "Util" or "Common" packages that grow without limit
+- Database schema driving the domain model
+
+---
+
 **Reference documentation included:**
 
 - `solid-principles.md` - SOLID principles with TypeScript examples
