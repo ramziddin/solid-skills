@@ -87,6 +87,10 @@ skills/
         └── complexity.md
 ```
 
+## Credits
+
+- Clean code practices in `clean-code.md` include concepts from the **"Clean Code" course summary** by [Academind GmbH / Maximilian Schwarzmuller](https://academind.com) (c) 2020.
+
 ## License
 
 MIT

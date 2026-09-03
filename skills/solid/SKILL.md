@@ -68,6 +68,21 @@ See: [references/solid-principles.md](references/solid-principles.md)
 4. **Brevity** - Short but not cryptic
 5. **Searchability** - Unique, greppable names
 
+**Functions:**
+- Minimize parameters (0 best, 1 good, 2 okay, 3+ use parameter objects)
+- Keep functions small and focused on one thing
+- All operations at the same level of abstraction, one level below the function name
+- Don't mix abstraction levels in a single function
+- Split reasonably - avoid redundant extractions
+- Avoid unexpected side effects (function name must imply all effects)
+
+**Control Structures:**
+- Prefer positive checks (`isEmpty(x)` over `!hasContent(x)`)
+- Avoid deep nesting - use guards and fail fast
+- Extract nested control structures into separate functions
+- Use polymorphism and factory functions to eliminate repeated conditionals
+- Embrace real errors (throw/catch) instead of synthetic error codes
+
 **Structure:**
 - One level of indentation per method
 - No `else` keyword when possible (early returns)
@@ -77,6 +92,7 @@ See: [references/solid-principles.md](references/solid-principles.md)
 - One dot per line (Law of Demeter)
 - Keep entities small (< 50 lines for classes, < 10 for methods)
 - No more than two instance variables per class
+- Distinguish between **objects** (hide data, expose behavior) and **data containers** (expose data) - don't mix types
 
 **Value Objects are MANDATORY for:**
 ```typescript
